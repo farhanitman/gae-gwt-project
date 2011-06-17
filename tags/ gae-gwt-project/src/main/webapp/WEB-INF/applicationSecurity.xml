@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		- Sample namespace-based configuration - - $Id:
+		applicationContext-security.xml 3019 2008-05-01 17:51:48Z luke_t $
+	-->
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+
+	<global-method-security secured-annotations="enabled">
+		<!--
+			AspectJ pointcut expression that locates our "post" method and
+			applies security that way <protect-pointcut expression="execution(*
+			bigbank.*Service.post*(..))" access="ROLE_TELLER"/>
+		-->
+	</global-method-security>
+
+	<http auto-config='true'>
+		<intercept-url pattern="/pages/login.jsp*" filters="none" />
+		<intercept-url pattern="/index.jsp" filters="none" />
+		<intercept-url pattern="/res" access="ROLE_ADMIN" />
+		<intercept-url pattern="/res/" access="ROLE_ADMIN" />
+		<intercept-url pattern="/res/**" filters="none" />
+		<intercept-url pattern="/**" access="ROLE_USER" />
+		<form-login login-page='/pages/login.jsp'
+			default-target-url='/' />
+	</http>
+
+	<authentication-provider user-service-ref='myUserDetailsService' />
+
+	<beans:bean id="myUserDetailsService"
+		class="com.boshanam.model.dao.mocks.security.dao.impl.MockSpringSecurityUserDetailsService"></beans:bean>
+
+	<!--
+		<authentication-provider> <user-service> <user name="siva"
+		password="sairam" authorities="ROLE_USER, ROLE_ADMIN" /> <user
+		name="santhi" password="sairam" authorities="ROLE_USER" />
+		</user-service> </authentication-provider>
+	-->
+
+</beans:beans>

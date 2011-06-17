@@ -1,0 +1,27 @@
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="pageLayout" template="/WEB-INF/themes/bluesky/layout.jsp">
+		<put-attribute name="title"
+			value="showcaseme.info - Personal Diary, Scheduler, Calander and many things of you in one place" />
+		<put-attribute name="onloadCall" value="" />
+		<put-attribute name="logo" value="/res/header/logo.jsp" />
+		<put-attribute name="loginInfo" value="/res/header/loginInfo.jsp" />
+		<put-attribute name="menu" value="/res/menu/menu.jsp" />
+		<put-attribute name="body" value="/pages/homeBodyContent.jsp" />
+		<put-attribute name="footerContent" value="/res/footer/footerContent.jsp" />
+		<put-attribute name="footer" value="/res/footer/footer.jsp" />
+
+	</definition>
+	<definition name="site.hi.Input" extends="pageLayout">
+		<put-attribute name="title" value="showcaseme.info - Input your name" />
+		<put-attribute name="body" value="/pages/inputContent.jsp" />
+
+	</definition>
+
+
+</tiles-definitions>
