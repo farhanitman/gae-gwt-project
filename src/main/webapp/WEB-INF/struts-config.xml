@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>	
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+
+
+<struts-config>
+
+
+	<!--
+		================================================ Form Bean Definitions
+	-->
+
+	<form-beans>
+
+		<form-bean name="hiForm" type="com.boshanam.view.forms.SayHiFormBean"></form-bean>
+
+	</form-beans>
+
+
+	<!--
+		========================================= Global Exception Definitions
+	-->
+
+	<global-exceptions>
+
+	</global-exceptions>
+
+
+	<!--
+		=========================================== Global Forward Definitions
+	-->
+
+	<global-forwards>
+		<!-- Default forward to "Welcome" action -->
+		<!-- Demonstrates using index.jsp to forward -->
+		<forward name="welcome" path="/Welcome.do" />
+	</global-forwards>
+
+
+	<!--
+		=========================================== Action Mapping Definitions
+	-->
+
+	<action-mappings>
+		<!-- Default "Welcome" action -->
+		<!-- Forwards to Welcome.jsp -->
+		<action path="/Welcome" forward="/pages/Welcome.jsp" />
+
+
+		<action path="/ipaction"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="hiForm">
+			<forward name="hi" path="/sayhi.jsp"></forward>
+		</action>
+	</action-mappings>
+
+
+	<!--
+		======================================== Message Resources Definitions
+	-->
+
+	<message-resources parameter="MessageResources" />
+	
+	<!--
+	<plug-in className="org.apache.struts.tiles2.TilesPlugin">
+		 Path to	XML definition file 
+		<set-property property="definitions-config" value="/WEB-INF/defs/tiles-defs.xml" />
+		 Set Module-awareness to true 
+		<set-property property="moduleAware" value="true" />
+		
+			<set-property property="org.apache.tiles.CONTAINER_FACTORY.mutable"
+			value="true" />
+	</plug-in>
+	-->
+	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+		<set-property property="contextConfigLocation" value="/WEB-INF/action-servlet.xml" />
+	</plug-in>
+	<!--
+		=================================================== Validator plugin
+	-->
+
+
+</struts-config>
+
